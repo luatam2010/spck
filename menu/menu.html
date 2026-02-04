@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <head>
+    <meta charset="utf-8">
+    <title>BiteRush</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:900|Sedgwick+Ave|Ubuntu:700" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="addtocart.html"> -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+
+    <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"
+      integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0"
+      crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"></script>
+  </head>
+</head>
+
+<body>
+  <section id="title" class="colored-section">
+    <div class="container-fluid">
+
+      <nav class="navbar navbar-expand-lg ">
+        <a class="navbar-brand" href="">BiteRush</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:5502/main/main.html">Main</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:5502/menu/menu.html">Menu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:5502/voucher/voucher.html">Voucher</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:5502/Register/register.html">Register</a>
+            </li>
+            <li class="nav-item d-none" id="user-box">
+              <a class="nav-link d-flex align-items-center" href="http://127.0.0.1:5502/Profile/profile.html">
+                <img id="nav-avatar" src="https://i.imgur.com/1X6R0bU.png"
+                  style="width:36px;height:36px;border-radius:50%;object-fit:cover;margin-right:8px;">
+                <span id="nav-username"></span>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </section>
+
+  <main>
+    <div class="menu-items">
+      <a class="nav-link" href="#Pizza">Pizza</a>
+      <a class="nav-link" href="#Hamburger">Hamburger</a>
+      <a class="nav-link" href="#Salad">Salad</a>
+      <a class="nav-link" href="#Drink">Drink</a>
+    </div>
+
+    <div id="Pizza">
+      <div class="caption">
+        <h5> Pizza</h5>
+      </div>
+      <nav class="container">
+        <nav class="menu1">
+          <img class="picture" style="width: 300px; height:300px ; vertical-align: middle;"
+            src="https://api.pepperonis.com.vn//uploads/images/undefined-1231.jpg" alt="Pizza">
+          <div class="type">
+            <p class="information" id="info">HAWAIIAN</p> 
+            <span class="size">S: 160.000đ</span>
+            <span class="size">L: 240.000đ</span>
+          </div>
+          <button class="btn open-btn" data-name="HAWAIIAN" data-price="160000"
+            data-image="https://api.pepperonis.com.vn//uploads/images/undefined-1231.jpg" onclick="openPopup(this)">
+            ADD TO CART
+          </button>
+        </nav>
+
+        <nav class="menu1">
+          <img class="picture" style="width: 300px; height:300px ; vertical-align: middle;"
+            src="https://api.pepperonis.com.vn//uploads/images/undefined-1228.jpg" alt="Pizza">
+          <div class="type">
+            <p class="information" id="info">MARGHERITA</p> 
+            <span class="size">S: 160.000đ</span>
+            <span class="size">L: 240.000đ</span>
+          </div>
+          <button class="btn open-btn" data-name="MARGHERITA" data-price="160000"
+            data-image="https://api.pepperonis.com.vn//uploads/images/undefined-1228.jpg" onclick="openPopup(this)">
+            ADD TO CART
+          </button>
+        </nav>
+
+        <nav class="menu1">
+          <img class="picture" style="width: 300px; height:300px ; vertical-align: middle;"
+            src="https://api.pepperonis.com.vn//uploads/images/undefined-1253.jpg" alt="Pizza">
+          <div class="type">
+            <p class="information" id="info">TERIYAKI CHICKEN</p> 
+            <span class="size">S: 160.000đ</span>
+            <span class="size">L: 240.000đ</span>
+          </div>
+          <!-- <button class="btn open-btn" data-name="TERIYAKI CHICKEN" data-price="160000"
+            data-image="https://api.pepperonis.com.vn/uploads/images/undefined-1253.jpg" onclick="openPopup(this)">
+            ADD TO CART
+          </button> -->
+          <button class="open-popup-btn" data-name="TERIYAKI CHICKEN"
+            data-img="https://api.pepperonis.com.vn/uploads/images/undefined-1253.jpg">
+            ADD TO CART
+          </button>
+        </nav>
+      </nav>
+    </div>
+    <div id="Hamburger">
+      <div class="caption">
+        <h5> Hamburger</h5>
+      </div>
+      <nav class="container">
+        <nav class="menu1">
+          <img class="picture" style="width: 300px; vertical-align: middle;"
+            src="https://i.pinimg.com/736x/8b/06/28/8b06282d1ea833555da5c8ae0458839b.jpg" alt="Hamburger">
+          <p class="information" id="info">BBQ CNC CHEESE BURGER</p>
+            <span class="size">69.000đ</span>
+          <button class="btn btn-add" onclick="addToCart('BBQ CNC CHEESE BURGER', 69000)">ADD TO CART</button>
+        </nav>
+
+        <nav class="menu1">
+          <img class="picture" style="width: 300px; vertical-align: middle;"
+            src="https://i.pinimg.com/1200x/f5/0b/3a/f50b3a416ccbf938ece0cdd1c007af07.jpg" alt="Hamburger">
+          <p class="information" id="info">SINGLE GRILL ONION</p>
+          <span class="size">69.000đ</span>
+          <button class="btn btn-add" onclick="addToCart('SINGLE GRILL ONION', 69000)">ADD TO CART</button>
+        </nav>
+
+        <nav class="menu1">
+          <img class="picture" style="width: 300px; vertical-align: middle;"
+            src="https://i.pinimg.com/736x/4d/c8/2b/4dc82b6a83bda2f331e29310e6e84461.jpg" alt="Hamburger">
+        
+          <p class="information">BBQ BACON CHEESE BURGER</p>
+          <span class="size">69.000đ</span>
+        
+          <button class="btn btn-add" onclick="addToCart('BBQ BACON CHEESE BURGER', 69000)">
+            ADD TO CART
+          </button>
+        </nav>
+      </nav>
+    </div>
+    <div id="Salad">
+      <div class="caption">
+        <h5>Salad</h5>
+      </div>
+      <nav class="container">
+        <nav class="menu1">
+          <img class="picture" style="width: 300px; vertical-align: middle;"
+            src="https://i.pinimg.com/736x/97/68/c6/9768c6b5dca02b94a9f99c1c6aaccdc7.jpg" alt="Salad">
+          <p class="information" id="info">COBB SALAD</p>
+          <span class="size">50.000đ</span>
+          <button class="btn btn-add" onclick="addToCart('COBB SALAD', 50000)">ADD TO CART</button>
+        </nav>
+
+        <nav class="menu1">
+          <img class="picture" style="width: 300px; vertical-align: middle;"
+            src="https://i.pinimg.com/736x/cd/40/a0/cd40a05cbeacbcd3476cd3c4e3b42823.jpg" alt="Salad">
+          <p class="information" id="info">AVOCADO SALAD</p>
+          <span class="size">50.000đ</span>
+          <button class="btn btn-add" onclick="addToCart('AVOCADO SALAD', 50000)">ADD TO CART</button>
+        </nav>
+
+        <nav class="menu1">
+          <img class="picture" style="width: 300px; vertical-align: middle;"
+            src="https://i.pinimg.com/736x/fa/b2/9f/fab29f857101e157ec88b7b92a9bba0e.jpg" alt="Salad">
+          <p class="information" id="info">GREEK SALAD</p>
+          <span class="size">50.000đ</span>
+          <button class="btn btn-add" onclick="addToCart('GREEK SALAD', 50000)">ADD TO CART</button>
+        </nav>
+      </nav>
+    </div>
+    <div id="Drink">
+      <div class="caption">
+        <h5>Drink</h5>
+      </div>
+      <nav class="container">
+        <nav class="menu1">
+          <img class="picture" style="width: 300px; vertical-align: middle;"
+            src="https://i.pinimg.com/1200x/5c/1b/16/5c1b16c552430ae3974a66d6db08efd1.jpg" alt="Soup">
+          <p class="information" id="info">ORANGE JUICE</p>
+          <span class="size">30.000đ</span>
+          <button class="btn btn-add" onclick="addToCart('ORANGE JUICE', 30000)">ADD TO CART</button>
+        </nav>
+
+        <nav class="menu1">
+          <img class="picture" style="width: 300px; vertical-align: middle;"
+            src="https://i.pinimg.com/1200x/46/8a/be/468abe85161e5a7c524f005c89518eb5.jpg" alt="Soup">
+          <p class="information" id="info">FRESH SODA</p>
+          <span class="size">25.000đ</span>
+          <button class="btn btn-add" onclick="addToCart('FRESH SODA', 25000)">ADD TO CART</button>
+        </nav>
+
+        <nav class="menu1">
+          <img class="picture" style="width: 300px; vertical-align: middle;"
+            src="https://i.pinimg.com/1200x/5d/0a/f8/5d0af851fbc060486d399c0fcbcb4335.jpg" alt="Soup">
+          <p class="information" id="info">Coke</p>
+          <span class="size">15.000đ</span>
+          <button class="btn btn-add" onclick="addToCart('Coke', 15000)">ADD TO CART</button>
+        </nav>
+
+        <div class="text-center mt-4">
+          <a href="SHOPPINGCART.html" class="btn btn-warning">VIEW SHOPPING CART</a>
+        </div>
+      </nav>
+    </div>
+  </main>
+
+  <script src="./cart.js"></script>
+  <script src="./app.js"></script>
+  <script src="./nav.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </div>
+  
+  <div id="overlay" onclick="closePopup()"></div>
+  
+  <div id="popup-container"></div>
+</body>
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-left">
+      <h3>Công ty TNHH Đức Nhân</h3>
+      <p>Address: số 23L Hai Bà Trưng, Phường Tràng Tiền, Quận Hoàn Kiếm, Hà Nội, Việt Nam</p>
+
+      <h5>Contact Us</h5>
+      <p>SĐT: 123 123 1234</p>
+      <p>Gmail: BiteRush@gmail.com</p>
+    </div>
+
+    <div class="footer-right">
+      <h5>LOCATION</h5>
+      <iframe src="https://www.google.com/maps?q=Pepperonis%20Tr%E1%BA%A7n%20Ph%C3%BA&output=embed" loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</footer>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+
+    <div class="container">
+        <div class="box">
+            <h1>Billing Address</h1>
+            <form>
+                <div class="text_box">
+                    <h4>Full Name</h4>
+                    <input type="text" placeholder="Email của bạn" name="" id="">
+                </div>
+                <div class="text_box">
+                    <h4>Email</h4>
+                    <input type="password" placeholder="Mật khẩu của bạn" name="" id="">
+                </div>
+                <div class="text_box">
+                    <h4>(*)Address</h4>
+                    <input type="text" placeholder="Email của bạn" name="" id="">
+                </div>
+                <div class="text_box">
+                    <h4>City</h4>
+                    <input type="password" placeholder="Mật khẩu của bạn" name="" id="">
+                </div>
+            </form>
+        </div>
+        <div class="box">
+            <h1>Payment</h1>
+            <form>
+                <div class="text_box">
+                    <h4>Card Accepted</h4>
+                    <div class="payment-icons">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeNy4CtwdQs6-sTC_4qAgABjC3OTNBPSmfPw&s"
+                          width="50" height="30" alt="Visa">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9VZnb9Orp1McpUUJLXlBbUEqDqYoGH_0Vgw&s"
+                          width="50" height="30" alt="MasterCard">
+                        
+                        <img src="https://www.shutterstock.com/image-vector/atm-symbol-button-sign-vector-600nw-2407755695.jpg"
+                          width="50" alt="ATM">
+                    </div>
+                </div>
+                <div class="text_box">
+                    <h4>Name On Card*</h4>
+                    <input type="text" placeholder="Tên thẻ của bạn" name="" id="">
+                </div>
+                <div class="text_box">
+                    <h4>Credit Card Number*</h4>
+                    <input type="password" placeholder="Số thẻ tín dụng của bạn" name="" id="">
+                </div>
+                <div class="text_box">
+                    <h4>Amount*</h4>
+                    <input type="password" placeholder="Số tiền muốn chuyển" name="" id="">
+                </div>
+                <div class="text_box mt-3">
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#notificationModal">
+                        Pay
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Modal thông báo -->
+    <div class="modal fade" id="notificationModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Notification</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Congratulations, your order has been successfully paid for. 🎉</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><a class="close" href="http://127.0.0.1:5502/main/main.html">Đóng</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

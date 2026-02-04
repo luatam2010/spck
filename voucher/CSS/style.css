@@ -1,0 +1,155 @@
+* {
+    font-family: 'Ubuntu';
+}
+
+body {
+    font-family: 'Ubuntu';
+    text-align: center;
+}
+
+.container-fluid {
+    padding: 1% 15%;
+}
+
+.colored-section {
+    background-color: #FAF3E0;
+    color: #B22222;
+}
+
+.navbar {
+    padding: 0 0 2rem;
+
+}
+
+.navbar-brand {
+    font-family: "Ubuntu";
+    font-size: 2rem;
+    font-weight: bold;
+    color: #B22222
+}
+
+.nav-item {
+    padding: 0px 18px;
+    text-align: right;
+}
+
+.nav-link {
+    font-family: "Ubuntu";
+    font-size: 1.2rem;
+    font-weight: 100;
+    color: #B22222
+}
+
+.contactus {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+.center {
+    text-align: center;
+    color: #B22222;
+}
+
+.padding-32 {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    margin: 20px;
+}
+
+.title {
+    font-weight: bold;
+    margin-bottom: 14px;
+}
+
+body {
+    background: #fff7f5;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.title {
+    text-align: center;
+    color: #b30000;
+    margin: 30px 0;
+    font-weight: bold;
+}
+
+/* GRID 100% chiều ngang */
+.voucher-grid {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 0 20px 40px;
+}
+
+/* KHUNG VOUCHER */
+.voucher {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    transition: transform .25s;
+}
+
+.voucher:hover {
+    transform: translateY(-5px);
+}
+
+/* HÌNH BÊN TRÁI */
+.voucher img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: linear-gradient(135deg, #ff5722, #b30000);
+}
+
+/* PHẦN PHẢI */
+.voucher .info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.voucher h3 {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+.voucher p {
+    margin: 8px 0;
+    font-size: 15px;
+}
+
+/* NÚT ÁP DỤNG */
+.voucher button {
+    align-self: flex-start;
+    background: linear-gradient(135deg, #ff9800, #ff5722);
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.voucher button:hover {
+    background: linear-gradient(135deg, #ff5722, #b30000);
+}
+
+.voucher button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .voucher-grid {
+        grid-template-columns: 1fr;
+    }
+}

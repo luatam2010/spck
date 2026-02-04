@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add To Cart Popup</title>
+    <link rel="stylesheet" href="addtocart.css">
+</head>
+
+<body>
+    <div class="popup-overlay">
+        <div class="popup-box" id="popup">
+            <span class="close" onclick="closePopup()">✖</span>
+
+            <div class="popup-content">
+
+                <div class="popup-left">
+                    <h2 id="popup-name">TERIYAKI CHICKEN</h2>
+                    <p class="material" id="popup-desc">
+                        Chicken pizza with Mayo-Teriyaki sauce, mushrooms, pineapple & cheese.
+                    </p>
+
+                    <img id="popup-img" src="https://api.pepperonis.com.vn/uploads/images/undefined-1253.jpg" alt="Pizza">
+
+                    <div class="section">
+                        <div class="section-title">Số lượng</div>
+                        <div class="quantity">
+                            <button onclick="changeQty(-1)">−</button>
+                            <span id="qty">1</span>
+                            <button onclick="changeQty(1)">+</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="popup-right">
+
+                    <div class="section">
+                        <div class="section-title">Chọn size</div>
+
+                        <label class="size-option">
+                            <input type="radio" name="size" data-price="160000" checked>
+                            <div class="size-info">
+                                <span class="size-name">S</span>
+                                <span class="size-price">160.000đ</span>
+                            </div>
+                        </label>
+
+                        <label class="size-option">
+                            <input type="radio" name="size" data-price="240000">
+                            <div class="size-info">
+                                <span class="size-name">L</span>
+                                <span class="size-price">240.000đ</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">Topping</div>
+
+                        <div class="topping-box">
+                            <label class="topping-option">
+                                <input type="checkbox" data-price="50000">
+                                <span class="topping-name">Cheese</span>
+                                <span class="topping-price">50.000đ</span>
+                            </label>
+
+                            <label class="topping-option">
+                                <input type="checkbox" data-price="30000">
+                                <span class="topping-name">Sausage</span>
+                                <span class="topping-price">30.000đ</span>
+                            </label>
+
+                            <label class="topping-option">
+                                <input type="checkbox" data-price="30000">
+                                <span class="topping-name">Mushroom</span>
+                                <span class="topping-price">30.000đ</span>
+                            </label>
+
+                            <label class="topping-option">
+                                <input type="checkbox" data-price="30000">
+                                <span class="topping-name">Corn</span>
+                                <span class="topping-price">30.000đ</span>
+                            </label>
+
+                            <label class="topping-option">
+                                <input type="checkbox" data-price="50000">
+                                <span class="topping-name">Shrimp</span>
+                                <span class="topping-price">50.000đ</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="total">
+                        Tổng: <span id="total">160.000</span>đ
+                    </div>
+
+                    <button class="btn" onclick="addToCart('TERIYAKI CHICKEN')">THÊM VÀO GIỎ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="addtocart.js"></script>
+    <script src="./cart.js"></script>
+</body>
+
+</html>

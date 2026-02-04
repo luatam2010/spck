@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popup HTML CSS</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    /* Ẩn checkbox */
+    #toggle {
+      display: none;
+    }
+
+    /* Nút mở popup */
+    .open-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #eb8fbd;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    /* Nền mờ */
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Khung popup */
+    .popup {
+      background: #fff;
+      padding: 20px;
+      width: 350px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .popup h2 {
+      margin-top: 0;
+    }
+
+    .popup .btn {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+
+    .btn-primary { background: #eb8fbd; color: #fff; }
+    .btn-secondary { background: #6c757d; color: #fff; }
+
+    /* Khi checkbox được check -> hiển thị popup */
+    #toggle:checked ~ .overlay {
+      display: flex;
+    }
+
+    /* Hiệu ứng */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px);}
+      to   { opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Checkbox để bật/tắt popup -->
+  <input type="checkbox" id="toggle">
+
+  <!-- Nút mở popup -->
+  <label for="toggle" class="open-btn">Mở Popup</label>
+
+  <!-- Popup -->
+  <div class="overlay">
+    <div class="popup">
+      <h2>Login Successful</h2>
+      <p>Congratulations, you have logged in successfully!</p>
+      <div>
+        <button class="btn btn-primary">Save Account</button>
+        <label for="toggle" class="btn btn-secondary">Close</label>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
