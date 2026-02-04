@@ -12,20 +12,67 @@ body {
 }
 
 .colored-section {
-  background-color: #FAF3E0;
+  background: linear-gradient(135deg, #FAF3E0 0%, #FFF5E1 100%);
   color: #B22222;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .navbar {
-  padding: 0 0 2rem;
-
+  padding: 0.5rem 0;
 }
 
 .navbar-brand {
-  font-family: "Ubuntu";
-  font-size: 2rem;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 2.5rem;
   font-weight: bold;
-  color: #B22222
+  color: #B22222;
+  text-shadow: 2px 2px 4px rgba(178, 34, 34, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.05);
+  color: #8B0000;
+}
+
+.nav-item {
+  padding: 0 18px;
+  text-align: right;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #B22222;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+.nav-link:hover {
+  color: #8B0000;
+  background-color: rgba(178, 34, 34, 0.1);
+  transform: translateY(-2px);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: #B22222;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 80%;
 }
 
 .nav-item {

@@ -44,7 +44,7 @@ loginForm.addEventListener("submit", function (event) {
 
 
     alert("✅ Đăng nhập tài khoản thành công!");
-    window.location.href = "main/main.html";
+    window.location.href = "./index.html";
 });
 
 window.onload = function () {
