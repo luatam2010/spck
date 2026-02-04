@@ -16,22 +16,6 @@ if (userData.avatar) {
 }
 
 // ========================
-// UPLOAD AVATAR
-// ========================
-function changeAvatar(input) {
-  const file = input.files[0];
-  const reader = new FileReader();
-
-  reader.onload = function () {
-    userData.avatar = reader.result;
-    localStorage.setItem("userData", JSON.stringify(userData));
-    document.getElementById("profile-avatar").src = reader.result;
-  };
-
-  reader.readAsDataURL(file);
-}
-
-// ========================
 function goHome() {
   window.location.href = "http://127.0.0.1:5502/main/main.html";
 }

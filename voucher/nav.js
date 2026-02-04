@@ -12,7 +12,4 @@ if (isLoggedIn && userData) {
 
   navUsername.innerText = userData.username || userData.email;
 
-  if (userData.avatar) {
-    navAvatar.src = userData.avatar;
-  }
 }

@@ -11,8 +11,4 @@ if (isLoggedIn && userData) {
   logoutBox.classList.remove("d-none");
 
   navUsername.innerText = userData.username || userData.email;
-
-  if (userData.avatar) {
-    navAvatar.src = userData.avatar;
-  }
 }

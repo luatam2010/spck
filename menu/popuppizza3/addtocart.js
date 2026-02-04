@@ -1,92 +1,81 @@
+/* ================================
+   POPUP JS
+================================ */
 let qty = 1;
-let basePrice = 160000;
-let totalPrice = 160000;
+let totalPrice = 0;
 
 const qtyEl = document.getElementById("qty");
 const totalEl = document.getElementById("total");
+
 const sizeRadios = document.querySelectorAll('input[name="size"]');
-const toppingCheckboxes = document.querySelectorAll('.topping-box input');
+const toppingCheckboxes = document.querySelectorAll('input[type="checkbox"]');
 
-init();
+/* EVENT */
+sizeRadios.forEach(r => r.addEventListener("change", updateTotal));
+toppingCheckboxes.forEach(c => c.addEventListener("change", updateTotal));
 
-/* INIT */
-function init() {
-    sizeRadios.forEach(r => r.addEventListener("change", updateTotal));
-    toppingCheckboxes.forEach(cb => cb.addEventListener("change", updateTotal));
-    updateTotal();
-}
-
-/* QUANTITY */
+/* +/- SỐ LƯỢNG */
 function changeQty(step) {
-    qty += step;
-    if (qty < 1) qty = 1;
-    qtyEl.innerText = qty;
-    updateTotal();
+  qty += step;
+  if (qty < 1) qty = 1;
+  qtyEl.innerText = qty;
+  updateTotal();
 }
 
-/* TOTAL */
+/* TÍNH TỔNG TIỀN MÓN */
 function updateTotal() {
-    basePrice = parseInt(document.querySelector('input[name="size"]:checked').dataset.price);
+  const sizeChecked = document.querySelector('input[name="size"]:checked');
+  if (!sizeChecked) return;
 
-    let toppingTotal = 0;
-    toppingCheckboxes.forEach(cb => {
-        if (cb.checked) toppingTotal += parseInt(cb.dataset.price);
-    });
+  let basePrice = Number(sizeChecked.dataset.price);
+  let toppingTotal = 0;
 
-    totalPrice = (basePrice + toppingTotal) * qty;
-    totalEl.innerText = totalPrice.toLocaleString("vi-VN");
+  toppingCheckboxes.forEach(cb => {
+    if (cb.checked) toppingTotal += Number(cb.dataset.price);
+  });
+
+  totalPrice = (basePrice + toppingTotal) * qty;
+  totalEl.innerText = totalPrice.toLocaleString("vi-VN") + "₫";
 }
 
 /* ADD TO CART */
 function addToCart() {
-    const toppings = [];
-    toppingCheckboxes.forEach(cb => {
-        if (cb.checked) {
-            toppings.push(cb.parentElement.querySelector(".topping-name").innerText);
-        }
-    });
+  const sizeChecked = document.querySelector('input[name="size"]:checked');
+  if (!sizeChecked) {
+    alert("Vui lòng chọn size!");
+    return;
+  }
 
-    const data = {
-        name: document.getElementById("popup-name").innerText,
-        qty,
-        size: document.querySelector('input[name="size"]:checked')
-                .parentElement.querySelector(".size-name").innerText,
-        toppings,
-        total: totalPrice
-    };
+  const toppings = [];
+  toppingCheckboxes.forEach(cb => {
+    if (cb.checked) toppings.push(cb.parentElement.innerText.trim());
+  });
 
-    console.log("Giỏ hàng:", data);
-    saveToShoppingCart(data);
-    alert("Đã thêm vào giỏ hàng!");
+  const cartItem = {
+    name: document.getElementById("popup-name").innerText,
+    size: sizeChecked.value,
+    toppings,
+    quantity: qty,
+    total: totalPrice // 🔥 TỔNG TIỀN MÓN
+  };
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const exist = cart.find(item =>
+    item.name === cartItem.name &&
+    item.size === cartItem.size &&
+    JSON.stringify(item.toppings) === JSON.stringify(cartItem.toppings)
+  );
+
+  if (exist) {
+    exist.quantity += cartItem.quantity;
+    exist.total += cartItem.total;
+  } else {
+    cart.push(cartItem);
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert("✅ Đã thêm vào giỏ hàng!");
 }
 
-/* CLOSE */
-function closePopup() {
-    document.getElementById("popup").style.display = "none";
-}
-
-
-function saveToShoppingCart(data) {
-    let cart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
-
-    const exist = cart.find(item =>
-        item.name === data.name &&
-        item.size === data.size &&
-        JSON.stringify(item.toppings) === JSON.stringify(data.toppings)
-    );
-
-    if (exist) {
-        exist.qty += data.qty;
-        exist.total += data.total;
-    } else {
-        cart.push({
-            name: data.name,
-            qty: data.qty,
-            size: data.size,
-            toppings: data.toppings,
-            total: data.total
-        });
-    }
-
-    localStorage.setItem("shoppingCart", JSON.stringify(cart));
-}
+updateTotal();
