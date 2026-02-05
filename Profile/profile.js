@@ -17,10 +17,10 @@ if (userData.avatar) {
 
 // ========================
 function goHome() {
-  window.location.href = "http://127.0.0.1:5502/main/main.html";
+  window.location.href = "http://127.0.0.1:5502/index.html";
 }
 
 function logout() {
   localStorage.removeItem("isLoggedIn");
-  window.location.href = "http://127.0.0.1:5502/main/main.html";
+  window.location.href = "http://127.0.0.1:5502/index.html";
 }
