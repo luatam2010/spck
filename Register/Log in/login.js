@@ -1,71 +1,94 @@
-const loginForm = document.getElementById("login-form");
+import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
-loginForm.addEventListener("submit", function (event) {
-    event.preventDefault(); // Ngăn reload trang
+import { auth, db } from "../firebase.js";
 
-    // Lấy dữ liệu từ form
-    const username = loginForm.username.value.trim();
-    const email = loginForm.email.value.trim();
-    const pass = loginForm.password.value;
-
-    // KIỂM TRA EMAIL
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-    if (!emailRegex.test(email)) {
-        alert("❌ Email sai định dạng (phải là @gmail.com)");
-        return;
-    }
-
-    // KIỂM TRA MẬT KHẨU MẠNH
-    const passwordRegex =
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
-
-    if (!passwordRegex.test(pass)) {
-        alert(
-            "❌ Mật khẩu chưa đủ mạnh!\n" +
-            "- Ít nhất 8 ký tự\n" +
-            "- Có chữ hoa\n" +
-            "- Có chữ thường\n" +
-            "- Có số\n" +
-            "- Có ký tự đặc biệt"
-        );
-        return;
-    }
-
-    // NẾU HỢP LỆ
-    const userData = {
-        username,
-        email,
-        pass,
-    };
-
-    localStorage.setItem("userData", JSON.stringify(userData));
-    localStorage.setItem("isLogin", "true");
-
-
-    alert("✅ Đăng nhập tài khoản thành công!");
-    window.location.href = "./index.html";
-});
-
-window.onload = function () {
-    const saved = localStorage.getItem("userData");
-    if (!saved) return;
-
-    const data = JSON.parse(saved);
-    loginForm.username.value = data.username || "";
-    loginForm.email.value = data.email || "";
-    loginForm.password.value = data.pass || "";
-};
-
-function togglePassword() {
-  const pw = document.getElementById("password");
+// DOM loaded
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("login-form");
+  const passwordInput = document.getElementById("password");
   const eye = document.getElementById("eye");
 
-  if (pw.type === "password") {
-    pw.type = "text";
-    eye.classList.remove("hide"); // hiện mật khẩu = không gạch
-  } else {
-    pw.type = "password";
-    eye.classList.add("hide");    // che mật khẩu = gạch chéo
-  }
-}
+  // SHOW / HIDE PASSWORD
+  eye.addEventListener("click", () => {
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      eye.textContent = "🍔";
+    } else {
+      passwordInput.type = "password";
+      eye.textContent = "🚫";
+    }
+  });
+
+  // LOGIN
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const identifier = form.identifier.value.trim();
+    const password = form.password.value;
+
+    let email = identifier;
+
+    try {
+      // NẾU NHẬP USERNAME THÌ TÌM EMAIL
+      if (!identifier.includes("@")) {
+        const q = query(
+          collection(db, "users"),
+          where("username", "==", identifier),
+        );
+
+        const querySnapshot = await getDocs(q);
+
+        if (querySnapshot.empty) {
+          alert("Username không tồn tại!");
+          return;
+        }
+
+        email = querySnapshot.docs[0].data().email;
+      }
+
+      // LOGIN FIREBASE
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
+
+      const user = userCredential.user;
+
+      // CHECK VERIFY EMAIL
+      if (!user.emailVerified) {
+        alert("Vui lòng xác thực email trước khi đăng nhập!");
+        return;
+      }
+
+      alert("Đăng nhập thành công!");
+      form.reset();
+
+      // CHUYỂN VỀ TRANG CHỦ
+      window.location.href = "../index.html";
+    } catch (error) {
+      console.error("Lỗi đăng nhập:", error);
+
+      let message = "Đăng nhập thất bại!";
+
+      if (error.code === "auth/invalid-credential") {
+        message = "Sai tài khoản hoặc mật khẩu.";
+      } else if (error.code === "auth/user-not-found") {
+        message = "Tài khoản không tồn tại.";
+      } else if (error.code === "auth/wrong-password") {
+        message = "Mật khẩu không đúng.";
+      } else if (error.code === "auth/invalid-email") {
+        message = "Email không hợp lệ.";
+      }
+
+      alert(message);
+    }
+  });
+});

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thanh Toán</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div class="payment-container">
+
+    <h1>🍔 THANH TOÁN ĐƠN HÀNG</h1>
+
+    <div class="payment-grid">
+
+      <!-- BILL -->
+      <div class="bill-box">
+        <h2>🧾 Hóa đơn</h2>
+        <div id="bill-list"></div>
+        <h3>Tổng tiền: <span id="bill-total">0</span> VNĐ</h3>
+      </div>
+
+      <!-- CUSTOMER INFO -->
+      <div class="info-box">
+        <h2>📦 Thông tin giao hàng</h2>
+
+        <form id="payment-form">
+          <input type="text" id="fullName" placeholder="Họ và tên" readonly />
+          <input type="text" id="email" placeholder="Email" readonly />
+          <input type="text" id="phone" placeholder="Số điện thoại" required />
+          <textarea
+            id="address"
+            placeholder="Nhập địa chỉ giao hàng"
+            required
+          ></textarea>
+
+          <select id="payment-method" required>
+            <option value="">Chọn phương thức thanh toán</option>
+            <option>Thanh toán khi nhận hàng</option>
+            <option>Chuyển khoản ngân hàng</option>
+            <option>Ví điện tử</option>
+          </select>
+
+          <button type="submit">💳 Thanh toán ngay</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="./payment.js"></script>
+</body>
+</html>

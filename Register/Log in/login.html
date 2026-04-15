@@ -1,45 +1,60 @@
 <!DOCTYPE html>
-<!-- Created By CodingLab - www.codinglabweb.com -->
-<html lang="en" dir="ltr">
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Login Form </title>
-  <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="register/register.html">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Fast Food Login</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body>
   <div class="container">
     <div class="title">Login</div>
+
     <div class="content">
       <form id="login-form">
         <div class="user-details">
-          <div class="input-box">
-            <span class="details">Username</span>
-            <input type="text" name="username" placeholder="Enter your username" required>
+
+          <!-- USERNAME OR EMAIL -->
+          <div class="input-box" style="width: 100%;">
+            <span class="details">Username or Email</span>
+            <input
+              type="text"
+              name="identifier"
+              placeholder="Enter username or email"
+              required
+            />
           </div>
-          <div class="input-box">
-            <span class="details">Email</span>
-            <input type="text" name="email" placeholder="Enter your email" required>
-          </div>
-          <div class="input-box password-box">
+
+          <!-- PASSWORD -->
+          <div class="input-box password-box" style="width: 100%;">
             <span class="details">Password</span>
-            <input type="password" id="password" placeholder="Enter your password">
-            <span class="eye" id="eye" onclick="togglePassword()">👁</span>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+              required
+            />
+            <span class="eye" id="eye">🍔</span>
           </div>
+
         </div>
+
+        <!-- LOGIN BUTTON -->
         <div class="button">
-          <input type="submit" value="Login">
+          <input type="submit" value="Login" />
         </div>
-        <a href="http://127.0.0.1:5502/Register/register.html">(*)No account yet?</a>
+
+        <!-- REGISTER LINK -->
+        <p style="text-align: center;">
+          Don’t have an account?
+          <a href="../Register/register.html">Register here</a>
+        </p>
       </form>
     </div>
   </div>
 
-  <script src="./login.js"></script>
-
+  <script type="module" src="./login.js"></script>
 </body>
-
 </html>

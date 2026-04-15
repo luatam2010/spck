@@ -56,7 +56,7 @@ function addToCart() {
     size: sizeChecked.value,
     toppings,
     quantity: qty,
-    total: totalPrice // 🔥 TỔNG TIỀN MÓN
+    total: totalPrice //TỔNG TIỀN MÓN
   };
 
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
