@@ -40,9 +40,36 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = form.password.value;
     const confirmPassword = form.confirmPassword.value;
 
-    // CHECK PASSWORD MATCH
+    // CHECK EMPTY EMAIL
+    if (!email) {
+      alert("Email không được để trống!");
+      return;
+    }
+
+    // CHECK EMAIL FORMAT
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("Email không đúng định dạng!");
+      return;
+    }
+    
     if (password !== confirmPassword) {
       alert("Mật khẩu xác nhận không khớp!");
+      return;
+    }
+
+    if (!/[A-Z]/.test(password)) {
+      alert("Mật khẩu phải có ít nhất 1 chữ hoa!");
+      return;
+    }
+
+    if (!/[a-z]/.test(password)) {
+      alert("Mật khẩu phải có ít nhất 1 chữ thường!");
+      return;
+    }
+
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      alert("Mật khẩu phải có ít nhất 1 ký tự đặc biệt!");
       return;
     }
 
@@ -55,21 +82,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const user = userCredential.user;
 
-      // UPDATE PROFILE
       await updateProfile(user, {
         displayName: username,
       });
 
-      // SAVE TO FIRESTORE
       await setDoc(doc(db, "users", user.uid), {
-        fullName: fullName,
-        username: username,
-        email: email,
-        phoneNumber: phoneNumber,
+        fullName,
+        username,
+        email,
+        phoneNumber,
         createdAt: serverTimestamp(),
       });
 
-      // SEND EMAIL VERIFY
       await sendEmailVerification(user);
 
       alert("Đăng ký thành công! Vui lòng kiểm tra email.");
@@ -83,11 +107,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (error.code === "auth/email-already-in-use") {
         message = "Email đã được sử dụng.";
-      } else if (error.code === "auth/weak-password") {
-        message = "Mật khẩu phải từ 6 ký tự trở lên.";
       } else if (error.code === "auth/invalid-email") {
         message = "Email không hợp lệ.";
+      } else if (error.code === "auth/weak-password") {
+        message = "Mật khẩu phải từ 6 ký tự trở lên.";
       }
+      
 
       alert(message);
     }

@@ -18,12 +18,17 @@ document.addEventListener("DOMContentLoaded", () => {
     billList.innerHTML += `
       <div>
         <span>${item.name} x${item.quantity}</span>
-        <span>${item.total} VNĐ</span>
+        <span>${item.total.toLocaleString()} VNĐ</span>
       </div>
     `;
   });
 
-  billTotal.textContent = total.toLocaleString();
+  // ÁP DỤNG VOUCHER NẾU CÓ
+  const discount = Number(localStorage.getItem("voucherDiscount")) || 0;
+
+  const finalTotal = total - discount;
+
+  billTotal.textContent = finalTotal.toLocaleString();
 
   // TỰ ĐIỀN THÔNG TIN USER
   fullName.value = user.fullName || "";
@@ -36,10 +41,25 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("submit", function (e) {
       e.preventDefault();
 
-      alert("🎉 Thanh toán thành công! Đơn hàng đang được chuẩn bị.");
+      // =====================
+      // TÍCH ĐIỂM 🍔
+      // =====================
+      const earnedPoints = Math.floor(finalTotal / 10000);
 
+      let currentPoints = Number(localStorage.getItem("burgerPoints")) || 0;
+
+      currentPoints += earnedPoints;
+
+      localStorage.setItem("burgerPoints", currentPoints);
+
+      alert(`🎉 Thanh toán thành công!\nBạn nhận được ${earnedPoints} 🍔`);
+
+      // XÓA BILL + VOUCHER
       localStorage.removeItem("cart");
+      localStorage.removeItem("voucherApplied");
+      localStorage.removeItem("voucherDiscount");
+      localStorage.removeItem("voucherPercent");
 
-      window.location.href = "./index.html";
+      window.location.href = "http://127.0.0.1:5502/index.html";
     });
 });

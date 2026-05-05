@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
       form.reset();
 
       // CHUYỂN VỀ TRANG CHỦ
-      window.location.href = "../index.html";
+      window.location.href = "http://127.0.0.1:5502/index.html";
     } catch (error) {
       console.error("Lỗi đăng nhập:", error);
 
