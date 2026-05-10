@@ -1,92 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" dir="ltr">
-<head>
-  <meta charset="UTF-8" />
-  <title>Responsive Registration Form</title>
-  <link rel="stylesheet" href="Log in/css/style.css" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Responsive Registration Form</title>
+    <link rel="stylesheet" href="./style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
 
-<body>
-  <div class="container">
-    <div class="title">Registration</div>
+  <body>
+    <div class="container">
+      <div class="title">Registration</div>
 
-    <div class="content">
-      <form id="register-form">
-        <div class="user-details">
+      <div class="content">
+        <form id="register-form">
+          <div class="user-details">
+            <div class="input-box">
+              <span class="details">Full Name</span>
+              <input
+                type="text"
+                name="fullName"
+                placeholder="Enter your name"
+                required
+              />
+            </div>
 
-          <div class="input-box">
-            <span class="details">Full Name</span>
-            <input
-              type="text"
-              name="fullName"
-              placeholder="Enter your name"
-              required
-            />
+            <div class="input-box">
+              <span class="details">Username</span>
+              <input
+                type="text"
+                name="username"
+                placeholder="Enter your username"
+                required
+              />
+            </div>
+
+            <div class="input-box">
+              <span class="details">Email</span>
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+
+            <div class="input-box">
+              <span class="details">Phone Number</span>
+              <input
+                type="text"
+                name="phoneNumber"
+                placeholder="Enter your number"
+                required
+              />
+            </div>
+
+            <div class="input-box password-box">
+              <span class="details">Password</span>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+              />
+              <span class="eye" id="eye">🍔</span>
+            </div>
+
+            <div class="input-box">
+              <span class="details">Confirm Password</span>
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm your password"
+                required
+              />
+            </div>
           </div>
 
-          <div class="input-box">
-            <span class="details">Username</span>
-            <input
-              type="text"
-              name="username"
-              placeholder="Enter your username"
-              required
-            />
+          <div class="button">
+            <input type="submit" value="Register" />
           </div>
 
-          <div class="input-box">
-            <span class="details">Email</span>
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              required
+          <!-- GOOGLE BUTTON -->
+          <button type="button" class="google-btn" id="google-register">
+            <img
+              src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+              alt="Google"
             />
-          </div>
+            <span>Continue with Google</span>
+          </button>
 
-          <div class="input-box">
-            <span class="details">Phone Number</span>
-            <input
-              type="text"
-              name="phoneNumber"
-              placeholder="Enter your number"
-              required
-            />
-          </div>
-
-          <div class="input-box password-box">
-            <span class="details">Password</span>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Enter your password"
-              required
-            />
-            <span class="eye" id="eye">🍔</span>
-          </div>
-
-          <div class="input-box">
-            <span class="details">Confirm Password</span>
-            <input
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm your password"
-              required
-            />
-          </div>
-        </div>
-
-        <div class="button">
-          <input type="submit" value="Register" />
-        </div>
-
-        <a href="Log in/login.html">(*) Already have an account?</a>
-      </form>
+          <a href="Log in/login.html">(*) Already have an account?</a>
+        </form>
+      </div>
     </div>
-  </div>
 
-  <script type="module" src="./register.js"></script>
-</body>
+    <script type="module" src="./register.js"></script>
+  </body>
 </html>

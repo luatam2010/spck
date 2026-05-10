@@ -87,16 +87,17 @@
                 >
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="http://127.0.0.1:5502/Register/register.html"
-                  >Register</a
-                >
-              </li>
-              <li class="nav-item">
                 <a class="nav-link" href="#">
                   🍔 <span id="burger-points">0</span>
                 </a>
+              </li>
+              <li><p>     </p></li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="http://127.0.0.1:5502/Register/register.html"
+                  > <img src="./IMG.png" alt="" width="40px"></a
+                >
               </li>
               <li class="nav-item d-none" id="user-box">
                 <a
@@ -124,27 +125,29 @@
     </section>
 
     <main>
-      <div class="menu-items">
-        <a class="nav-link" href="#Pizza">Pizza</a>
-        <a class="nav-link" href="#Hamburger">Hamburger</a>
-        <a class="nav-link" href="#Salad">Salad</a>
-        <a class="nav-link" href="#Drink">Drink</a>
-        <div class="search-box text-center my-4">
-          <input
-            type="text"
-            id="searchInput"
-            class="form-control w-50 mx-auto"
-            placeholder="Search food..."
-            onkeyup="searchFood()"
-          />
+      <div class="menu-bar">
+        <!-- TOP -->
+        <div class="menu-top">
+          <h5>Order something</h5>
+
+          <div class="search-box">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search..."
+              onkeyup="searchFood()"
+            />
+            <i class="fas fa-search"></i>
+          </div>
         </div>
-        <p
-          id="no-result-message"
-          class="text-center mt-3"
-          style="display: none"
-        >
-          No food found 🍔
-        </p>
+
+        <div class="menu-items">
+          <a href="#Pizza" class="menu-pill active">All</a>
+          <a href="#Pizza" class="menu-pill">🍕Pizza</a>
+          <a href="#Hamburger" class="menu-pill">🍔Burger</a>
+          <a href="#Salad" class="menu-pill">🥗Salad</a>
+          <a href="#Drink" class="menu-pill">🥤Drink</a>
+        </div>
       </div>
 
       <div id="Pizza">
@@ -393,7 +396,7 @@
 
           <div class="text-center mt-4">
             <a href="SHOPPINGCART.html" class="btn btn-warning"
-              >VIEW SHOPPING CART</a
+              >🛒SHOPPING CART</a
             >
           </div>
         </nav>

@@ -1,60 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Fast Food Login</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fast Food Login</title>
+    <link rel="stylesheet" href="./style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
 
-<body>
-  <div class="container">
-    <div class="title">Login</div>
+  <body>
+    <div class="container">
+      <div class="title">Login</div>
 
-    <div class="content">
-      <form id="login-form">
-        <div class="user-details">
+      <div class="content">
+        <form id="login-form">
+          <div class="user-details">
+            <!-- USERNAME OR EMAIL -->
+            <div class="input-box" style="width: 100%">
+              <span class="details">Username or Email</span>
+              <input
+                type="text"
+                name="identifier"
+                placeholder="Enter username or email"
+                required
+              />
+            </div>
 
-          <!-- USERNAME OR EMAIL -->
-          <div class="input-box" style="width: 100%;">
-            <span class="details">Username or Email</span>
-            <input
-              type="text"
-              name="identifier"
-              placeholder="Enter username or email"
-              required
-            />
+            <!-- PASSWORD -->
+            <div class="input-box password-box" style="width: 100%">
+              <span class="details">Password</span>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+              />
+              <span class="eye" id="eye">🍔</span>
+            </div>
           </div>
 
-          <!-- PASSWORD -->
-          <div class="input-box password-box" style="width: 100%;">
-            <span class="details">Password</span>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Enter your password"
-              required
-            />
-            <span class="eye" id="eye">🍔</span>
+          <!-- LOGIN BUTTON -->
+          <div class="button">
+            <input type="submit" value="Login" />
           </div>
 
-        </div>
+          <!-- GOOGLE LOGIN -->
+          <button type="button" class="google-btn" id="google-login">
+            <img
+              src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+              alt="Google" width="25px"
+            />
+            <span>Continue with Google</span>
+          </button>
 
-        <!-- LOGIN BUTTON -->
-        <div class="button">
-          <input type="submit" value="Login" />
-        </div>
-
-        <!-- REGISTER LINK -->
-        <p style="text-align: center;">
-          Don’t have an account?
-          <a href="../Register/register.html">Register here</a>
-        </p>
-      </form>
+          <!-- REGISTER LINK -->
+          <p style="text-align: center">
+            Don’t have an account?
+            <a href="../Register/register.html">Register here</a>
+          </p>
+        </form>
+      </div>
     </div>
-  </div>
 
-  <script type="module" src="./login.js"></script>
-</body>
+    <script type="module" src="./login.js"></script>
+  </body>
 </html>
