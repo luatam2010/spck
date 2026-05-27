@@ -73,7 +73,7 @@ function openPopup(button) {
     })
     .catch((err) => {
       console.error("Error loading popup:", err);
-      alert("Không thể mở popup. Vui lòng thử lại!");
+      alert("Cannot popup. Please Try Again!");
     });
 }
 

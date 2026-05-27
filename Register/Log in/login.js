@@ -38,14 +38,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // GOOGLE LOGIN
   googleLoginBtn.addEventListener("click", async () => {
     try {
       const result = await signInWithPopup(auth, provider);
 
       const user = result.user;
 
-      // CHECK USER EXISTS
       const userRef = doc(db, "users", user.uid);
       const userSnap = await getDoc(userRef);
 
@@ -59,12 +57,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
 
-      alert("Đăng nhập Google thành công!");
+      alert("Login With Google Successful! Welcome Back!");
 
       window.location.href = "http://127.0.0.1:5502/index.html";
     } catch (error) {
       console.error(error);
-      alert("Đăng nhập Google thất bại!");
+      alert("Login With Google Failed!");
     }
   });
 
@@ -78,7 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let email = identifier;
 
     try {
-      // NẾU NHẬP USERNAME THÌ TÌM EMAIL
       if (!identifier.includes("@")) {
         const q = query(
           collection(db, "users"),
@@ -88,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const querySnapshot = await getDocs(q);
 
         if (querySnapshot.empty) {
-          alert("Username không tồn tại!");
+          alert("Invalid Username!");
           return;
         }
 
@@ -106,11 +103,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // CHECK VERIFY EMAIL
       if (!user.emailVerified) {
-        alert("Vui lòng xác thực email trước khi đăng nhập!");
+        alert("Please Verify Your Email Before Logging In!");
         return;
       }
 
-      alert("Đăng nhập thành công!");
+      alert("Login Successful! Welcome Back!");
 
       form.reset();
 
@@ -118,16 +115,16 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (error) {
       console.error("Lỗi đăng nhập:", error);
 
-      let message = "Đăng nhập thất bại!";
+      let message = "Login Failed!";
 
       if (error.code === "auth/invalid-credential") {
-        message = "Sai tài khoản hoặc mật khẩu.";
+        message = "Invalid Email or Password.";
       } else if (error.code === "auth/user-not-found") {
-        message = "Tài khoản không tồn tại.";
+        message = "Account Does Not Exist.";
       } else if (error.code === "auth/wrong-password") {
-        message = "Mật khẩu không đúng.";
+        message = "Wrong Password.";
       } else if (error.code === "auth/invalid-email") {
-        message = "Email không hợp lệ.";
+        message = "Invalid Email Address.";
       }
 
       alert(message);

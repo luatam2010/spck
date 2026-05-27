@@ -77,11 +77,11 @@ function removeItem(index) {
 /* ================= PAY ================= */
 function pay() {
   if (cart.length === 0) {
-    alert("Giỏ hàng trống!");
+    alert("Cart Is Empty!");
     return;
   }
 
-  alert("✅ Thanh toán thành công!");
+  alert("✅ Order Successful!");
   localStorage.clear();
   window.location.href = "menu.html";
 }

@@ -55,6 +55,8 @@
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg">
           <a class="navbar-brand" href="">BiteRush</a>
+
+          <!-- BUTTON 3 GẠCH -->
           <button
             class="navbar-toggler"
             type="button"
@@ -64,41 +66,49 @@
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon">
+              <span></span>
+            </span>
           </button>
 
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link" href="http://127.0.0.1:5502/index.html"
-                  >Main</a
-                >
+                <a class="nav-link" href="http://127.0.0.1:5502/index.html">
+                  Main
+                </a>
               </li>
+
               <li class="nav-item">
-                <a class="nav-link" href="http://127.0.0.1:5502/menu/menu.html"
-                  >Menu</a
-                >
+                <a class="nav-link" href="http://127.0.0.1:5502/menu/menu.html">
+                  Menu
+                </a>
               </li>
+
               <li class="nav-item">
                 <a
                   class="nav-link"
                   href="http://127.0.0.1:5502/voucher/voucher.html"
-                  >Voucher</a
                 >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  🍔 <span id="burger-points">0</span>
+                  Voucher
                 </a>
               </li>
-              <li><p>     </p></li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="reset-points">
+                  ⭐🍔 <span id="burger-points">0</span>
+                </a>
+              </li>
+
               <li class="nav-item">
                 <a
                   class="nav-link"
                   href="http://127.0.0.1:5502/Register/register.html"
-                  > <img src="./IMG.png" alt="" width="40px"></a
                 >
+                  <img src="./IMG.png" alt="" width="30px" />
+                </a>
               </li>
+
               <li class="nav-item d-none" id="user-box">
                 <a
                   class="nav-link d-flex align-items-center"
@@ -145,6 +155,7 @@
           <a href="#Pizza" class="menu-pill active">All</a>
           <a href="#Pizza" class="menu-pill">🍕Pizza</a>
           <a href="#Hamburger" class="menu-pill">🍔Burger</a>
+          <a href="#Pasta" class="menu-pill">🍝Pasta</a>
           <a href="#Salad" class="menu-pill">🥗Salad</a>
           <a href="#Drink" class="menu-pill">🥤Drink</a>
         </div>
@@ -223,6 +234,75 @@
               ADD TO CART
             </button>
           </nav>
+
+          <nav class="menu1 food-item" data-category="Pizza">
+            <img
+              class="picture"
+              style="width: 300px; height: 300px; vertical-align: middle"
+              src="https://api.pepperonis.com.vn//uploads/images/undefined-3770.jpg"
+              alt="Pizza"
+            />
+            <div class="type">
+              <p class="information" id="info">SAUSAGE SUPREME</p>
+              <span class="size">S: 160.000đ</span>
+              <span class="size">L: 240.000đ</span>
+            </div>
+            <button
+              class="btn open-btn"
+              data-name="SAUSAGE SUPREME"
+              data-price="160000"
+              data-image="https://api.pepperonis.com.vn//uploads/images/undefined-3770.jpg"
+              onclick="openPopup(this)"
+            >
+              ADD TO CART
+            </button>
+          </nav>
+
+          <nav class="menu1 food-item" data-category="Pizza">
+            <img
+              class="picture"
+              style="width: 300px; height: 300px; vertical-align: middle"
+              src="https://api.pepperonis.com.vn//uploads/images/undefined-1300.jpg"
+              alt="Pizza"
+            />
+            <div class="type">
+              <p class="information" id="info">SEAFOOD MORNAY</p>
+              <span class="size">S: 160.000đ</span>
+              <span class="size">L: 240.000đ</span>
+            </div>
+            <button
+              class="btn open-btn"
+              data-name="SEAFOOD MORNAY"
+              data-price="160000"
+              data-image="https://api.pepperonis.com.vn//uploads/images/undefined-1300.jpg"
+              onclick="openPopup(this)"
+            >
+              ADD TO CART
+            </button>
+          </nav>
+
+          <nav class="menu1 food-item" data-category="Pizza">
+            <img
+              class="picture"
+              style="width: 300px; height: 300px; vertical-align: middle"
+              src="https://api.pepperonis.com.vn//uploads/images/undefined-1223.jpg"
+              alt="Pizza"
+            />
+            <div class="type">
+              <p class="information" id="info">BEEFY</p>
+              <span class="size">S: 160.000đ</span>
+              <span class="size">L: 240.000đ</span>
+            </div>
+            <button
+              class="btn open-btn"
+              data-name="BEEFY"
+              data-price="160000"
+              data-image="https://api.pepperonis.com.vn//uploads/images/undefined-1223.jpg"
+              onclick="openPopup(this)"
+            >
+              ADD TO CART
+            </button>
+          </nav>
         </nav>
       </div>
 
@@ -278,6 +358,117 @@
             <button
               class="btn btn-add"
               onclick="addToShopCart('BBQ BACON CHEESE BURGER', 69000)"
+            >
+              ADD TO CART
+            </button>
+          </nav>
+
+          <nav class="menu1 food-item" data-category="Hamburger">
+            <img
+              class="picture"
+              style="width: 300px; vertical-align: middle"
+              src="https://i.pinimg.com/1200x/ec/a1/ad/eca1ad6efcc255a05c53b51ff9833829.jpg"
+              alt="Hamburger"
+            />
+
+            <p class="information">SMASH BURGER</p>
+            <span class="size">69.000đ</span>
+            <button
+              class="btn btn-add"
+              onclick="addToShopCart('SMASH BURGER', 69000)"
+            >
+              ADD TO CART
+            </button>
+          </nav>
+
+          <nav class="menu1 food-item" data-category="Hamburger">
+            <img
+              class="picture"
+              style="width: 300px; vertical-align: middle"
+              src="https://i.pinimg.com/1200x/5d/ed/2d/5ded2d26f3d1e02403dd3d8653829187.jpg"
+              alt="Hamburger"
+            />
+
+            <p class="information">MUSHROOM SWISS BURGER</p>
+            <span class="size">69.000đ</span>
+            <button
+              class="btn btn-add"
+              onclick="addToShopCart('MUSHROOM SWISS BURGER', 69000)"
+            >
+              ADD TO CART
+            </button>
+          </nav>
+
+          <nav class="menu1 food-item" data-category="Hamburger">
+            <img
+              class="picture"
+              style="width: 300px; vertical-align: middle"
+              src="https://i.pinimg.com/736x/f7/e8/1d/f7e81d261b757130756555033d011ed4.jpg"
+              alt="Hamburger"
+            />
+
+            <p class="information">PASTRAMI BURGER</p>
+            <span class="size">69.000đ</span>
+            <button
+              class="btn btn-add"
+              onclick="addToShopCart('PASTRAMI BURGER', 69000)"
+            >
+              ADD TO CART
+            </button>
+          </nav>
+        </nav>
+      </div>
+      <div id="Pasta">
+        <div class="caption food-category">
+          <h5>Pasta</h5>
+        </div>
+        <nav class="container">
+          <nav class="menu1 food-item" data-category="Pasta">
+            <img
+              class="picture"
+              style="width: 300px; vertical-align: middle"
+              src="https://api.pepperonis.com.vn//uploads/images/undefined-1348.jpg"
+              alt="Salad"
+            />
+            <p class="information" id="info">BOLOGNAISE</p>
+            <span class="size">80.000đ</span>
+            <button
+              class="btn btn-add"
+              onclick="addToShopCart('BOLOGNAISE', 80000)"
+            >
+              ADD TO CART
+            </button>
+          </nav>
+
+          <nav class="menu1 food-item" data-category="Pasta">
+            <img
+              class="picture"
+              style="width: 300px; vertical-align: middle"
+              src="https://api.pepperonis.com.vn//uploads/images/undefined-1352.jpg"
+              alt="Salad"
+            />
+            <p class="information" id="info">STEAK & MUSHROOM</p>
+            <span class="size">80.000đ</span>
+            <button
+              class="btn btn-add"
+              onclick="addToShopCart('STEAK & MUSHROOM', 80000)"
+            >
+              ADD TO CART
+            </button>
+          </nav>
+
+          <nav class="menu1 food-item" data-category="Pasta">
+            <img
+              class="picture"
+              style="width: 300px; vertical-align: middle"
+              src="https://api.pepperonis.com.vn//uploads/images/undefined-1349.jpg"
+              alt="Salad"
+            />
+            <p class="information" id="info">CARBONARA</p>
+            <span class="size">80.000đ</span>
+            <button
+              class="btn btn-add"
+              onclick="addToShopCart('CARBONARA', 80000)"
             >
               ADD TO CART
             </button>

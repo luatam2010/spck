@@ -15,5 +15,5 @@ function addToShopCart(name, price) {
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));
-  alert("✅Đã thêm vào giỏ hàng!");
+  alert("✅ Added to Cart!");
 }

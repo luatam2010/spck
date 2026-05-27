@@ -37,34 +37,77 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // GOOGLE REGISTER
-  googleRegisterBtn.addEventListener("click", async () => {
+  async function registerWithGoogle() {
     try {
+      // LOGIN GOOGLE
       const result = await signInWithPopup(auth, provider);
 
+      // USER DATA
       const user = result.user;
 
-      // CHECK USER EXISTS
-      const userRef = doc(db, "users", user.uid);
-      const userSnap = await getDoc(userRef);
+      // USER DOCUMENT
+      const userDoc = doc(db, "users", user.uid);
 
-      if (!userSnap.exists()) {
-        await setDoc(userRef, {
-          fullName: user.displayName || "",
-          username: user.displayName || "",
+      // CHECK USER
+      const existingUser = await getDoc(userDoc);
+
+      // IF USER NOT EXISTS
+      if (!existingUser.exists()) {
+        // CREATE NEW USER DATA
+        const userData = {
+          uid: user.uid,
+
+          fullName: user.displayName || "Unknown",
+          username: user.email?.split("@")[0] || "user",
           email: user.email || "",
+
           phoneNumber: "",
+
+          photoURL: user.photoURL || "",
+
+          burgerPoints: 0,
+          orders: 0,
+          vouchers: 0,
+
+          provider: "google",
+
           createdAt: serverTimestamp(),
-        });
+        };
+
+        // SAVE FIRESTORE
+        await setDoc(userDoc, userData);
       }
 
-      alert("Đăng ký Google thành công!");
+      // SUCCESS
+      alert("Google Register Successful!");
 
+      // REDIRECT
       window.location.href = "Log in/login.html";
     } catch (error) {
-      console.error(error);
-      alert("Đăng ký Google thất bại!");
+      console.error("Google Register Error:", error);
+
+      let message = "Google Register Failed!";
+
+      switch (error.code) {
+        case "auth/popup-closed-by-user":
+          message = "Google Popup Closed!";
+          break;
+
+        case "auth/network-request-failed":
+          message = "Check Your Internet!";
+          break;
+
+        case "auth/cancelled-popup-request":
+          message = "Popup Request Cancelled!";
+          break;
+      }
+
+      alert(message);
     }
-  });
+  }
+
+  // BUTTON EVENT
+  googleRegisterBtn.addEventListener("click", registerWithGoogle);
 
   // REGISTER
   form.addEventListener("submit", async (e) => {
@@ -75,7 +118,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const email = form.email.value.trim();
     const phoneNumber = form.phoneNumber.value.trim();
     const password = form.password.value;
-    const confirmPassword = form.confirmPassword.value;
+
+    const confirmPassword = form.querySelector(
+      '[name="confirmPassword"]',
+    ).value;
 
     // CHECK EMPTY EMAIL
     if (!email) {
@@ -87,31 +133,38 @@ document.addEventListener("DOMContentLoaded", () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!emailRegex.test(email)) {
-      alert("Email không đúng định dạng!");
+      alert("Email Format Is Incorrect!");
+      return;
+    }
+
+    // FIX PASSWORD LENGTH
+    if (password.length < 6) {
+      alert("Password Must Be At Least 6 Characters.");
       return;
     }
 
     if (password !== confirmPassword) {
-      alert("Mật khẩu xác nhận không khớp!");
+      alert("Confirm Password Does Not Match!");
       return;
     }
 
     if (!/[A-Z]/.test(password)) {
-      alert("Mật khẩu phải có ít nhất 1 chữ hoa!");
+      alert("Password Must Include Uppercase!");
       return;
     }
 
     if (!/[a-z]/.test(password)) {
-      alert("Mật khẩu phải có ít nhất 1 chữ thường!");
+      alert("Password Must Include Lowercase!");
       return;
     }
 
     if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-      alert("Mật khẩu phải có ít nhất 1 ký tự đặc biệt!");
+      alert("Password Must Include Special characters!");
       return;
     }
 
     try {
+      // TẠO TÀI KHOẢN
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -120,21 +173,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const user = userCredential.user;
 
-      await updateProfile(user, {
-        displayName: username,
-      });
+      // UPDATE PROFILE
+      try {
+        await updateProfile(user, {
+          displayName: username,
+        });
+      } catch (e) {
+        console.log("Update profile:", e);
+      }
 
-      await setDoc(doc(db, "users", user.uid), {
-        fullName,
-        username,
-        email,
-        phoneNumber,
-        createdAt: serverTimestamp(),
-      });
+      // LƯU FIRESTORE
+      try {
+        await setDoc(doc(db, "users", user.uid), {
+          uid: user.uid,
+          fullName,
+          username,
+          email,
+          phoneNumber,
+          createdAt: serverTimestamp(),
+        });
+      } catch (e) {
+        console.log("Firestore:", e);
+      }
 
-      await sendEmailVerification(user);
+      // GỬI EMAIL VERIFY
+      try {
+        await sendEmailVerification(user);
+      } catch (e) {
+        console.log("Email verify:", e);
+      }
 
-      alert("Đăng ký thành công! Vui lòng kiểm tra email.");
+      alert("Registration Successful! Please Check Your Email.");
 
       form.reset();
 
@@ -142,14 +211,14 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (error) {
       console.error(error);
 
-      let message = "Đăng ký thất bại!";
+      let message = error.message;
 
       if (error.code === "auth/email-already-in-use") {
-        message = "Email đã được sử dụng.";
+        message = "Email Already Exists.";
       } else if (error.code === "auth/invalid-email") {
-        message = "Email không hợp lệ.";
+        message = "Email Format Is Incorrect.";
       } else if (error.code === "auth/weak-password") {
-        message = "Mật khẩu phải từ 6 ký tự trở lên.";
+        message = "Password Must Be At Least 6 Characters.";
       }
 
       alert(message);
