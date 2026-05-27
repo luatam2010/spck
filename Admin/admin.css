@@ -1,0 +1,43 @@
+body{
+  background:#fff5e1;
+  font-family:Ubuntu;
+}
+
+.admin-container{
+  width:500px;
+  margin:auto;
+  margin-top:50px;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+input{
+  padding:14px;
+  border-radius:12px;
+  border:none;
+}
+
+button{
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  background:#b22222;
+  color:white;
+  cursor:pointer;
+}
+
+.product{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  background:white;
+  padding:15px;
+  border-radius:16px;
+}
+
+.product img{
+  width:80px;
+  height:80px;
+  object-fit:cover;
+}

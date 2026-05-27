@@ -1,4 +1,13 @@
 function openPopup(button) {
+  const userData = JSON.parse(localStorage.getItem("userData"));
+
+  if (!userData) {
+    alert("Please Login First!");
+
+    window.location.href = "/Register/Log in/login.html";
+
+    return;
+  }
   console.log("Opening popup...", button.dataset);
 
   const name = button.dataset.name;
@@ -112,10 +121,55 @@ function searchFood() {
     category.style.display = hasSearch ? "none" : "block";
   });
 
-// thông báo
+  // thông báo
   if (hasSearch && !found) {
     noResult.style.display = "block";
   } else {
     noResult.style.display = "none";
   }
 }
+
+const adminProducts = JSON.parse(localStorage.getItem("adminProducts")) || [];
+
+const menuContainer = document.getElementById("menu-products");
+
+adminProducts.forEach((product) => {
+  const div = document.createElement("nav");
+
+  // GIỐNG CẤU TRÚC MENU CỦA BẠN
+  div.className = "menu1 food-item";
+
+  div.setAttribute("data-category", "Admin");
+
+  div.innerHTML = `
+  
+    <img
+      class="picture"
+      style="width: 300px; height: 300px; vertical-align: middle"
+      src="${product.image}"
+      alt="${product.name}"
+    />
+
+    <p class="information">
+      ${product.name}
+    </p>
+
+    <span class="size">
+      ${Number(product.price).toLocaleString()}đ
+    </span>
+
+    <button
+      class="btn open-btn"
+
+      data-name="${product.name}"
+      data-price="${product.price}"
+      data-image="${product.image}"
+
+      onclick="openPopup(this)"
+    >
+      ADD TO CART
+    </button>
+  `;
+
+  menuContainer.appendChild(div);
+});

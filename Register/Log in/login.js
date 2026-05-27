@@ -59,6 +59,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       alert("Login With Google Successful! Welcome Back!");
 
+      localStorage.setItem(
+        "userData",
+        JSON.stringify({
+          fullName: user.displayName,
+          username: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+        }),
+      );
+
       window.location.href = "http://127.0.0.1:5502/index.html";
     } catch (error) {
       console.error(error);
@@ -100,6 +110,14 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       const user = userCredential.user;
+
+      const userRef = doc(db, "users", user.uid);
+
+      const userSnap = await getDoc(userRef);
+
+      const userData = userSnap.data();
+
+      localStorage.setItem("userData", JSON.stringify(userData));
 
       // CHECK VERIFY EMAIL
       if (!user.emailVerified) {

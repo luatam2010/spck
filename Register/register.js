@@ -81,6 +81,17 @@ document.addEventListener("DOMContentLoaded", () => {
       // SUCCESS
       alert("Google Register Successful!");
 
+      localStorage.setItem(
+        "userData",
+        JSON.stringify({
+          uid: user.uid,
+          fullName: user.displayName,
+          username: user.email.split("@")[0],
+          email: user.email,
+          photoURL: user.photoURL,
+        }),
+      );
+
       // REDIRECT
       window.location.href = "Log in/login.html";
     } catch (error) {
@@ -185,6 +196,10 @@ document.addEventListener("DOMContentLoaded", () => {
       // LƯU FIRESTORE
       try {
         await setDoc(doc(db, "users", user.uid), {
+          burgerPoints: 0,
+          orders: 0,
+          vouchers: 0,
+          photoURL: "",
           uid: user.uid,
           fullName,
           username,
@@ -204,6 +219,17 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       alert("Registration Successful! Please Check Your Email.");
+
+      localStorage.setItem(
+        "userData",
+        JSON.stringify({
+          uid: user.uid,
+          fullName,
+          username,
+          email,
+          phoneNumber,
+        }),
+      );
 
       form.reset();
 
