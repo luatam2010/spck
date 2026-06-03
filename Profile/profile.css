@@ -1,34 +1,168 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu", sans-serif;
+}
+
 body {
-  background: #fff5e1;
+  min-height: 100vh;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  font-family: Ubuntu;
+
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.45),
+    rgba(0, 0, 0, 0.45)),
+    url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1600&auto=format&fit=crop")
+    center/cover no-repeat;
+
+  padding: 20px;
 }
+
+/* PROFILE CARD */
 
 .profile-card {
-  width: 350px;
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
+  width: 100%;
+  max-width: 420px;
+
+  background: rgba(255, 255, 255, 0.92);
+
+  backdrop-filter: blur(12px);
+
+  border-radius: 32px;
+
+  padding: 40px 35px;
+
   text-align: center;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.15),
+    0 5px 15px rgba(0, 0, 0, 0.08);
+
+  border: 2px solid rgba(255, 255, 255, 0.5);
+
+  position: relative;
+
+  overflow: hidden;
 }
+
+/* TOP DECOR */
+
+.profile-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 120px;
+
+  background: linear-gradient(135deg, #b31217, #ff9800);
+
+  border-radius: 0 0 40px 40px;
+}
+
+/* AVATAR */
 
 .profile-card img {
-  width: 120px;
-  height: 120px;
+  width: 130px;
+  height: 130px;
+
   border-radius: 50%;
+
   object-fit: cover;
+
+  border: 6px solid white;
+
+  position: relative;
+
+  margin-top: 20px;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
+/* NAME */
+
+#profile-name {
+  margin-top: 22px;
+
+  font-size: 34px;
+
+  color: #7a0c0c;
+
+  font-weight: 700;
+}
+
+/* EMAIL + PHONE */
+
+#profile-email,
+#profile-phone {
+  margin-top: 14px;
+
+  background: #fff6ef;
+
+  padding: 14px 18px;
+
+  border-radius: 16px;
+
+  color: #444;
+
+  font-size: 15px;
+
+  border: 2px solid #ffe0b2;
+
+  text-align: left;
+}
+
+/* LOGOUT BUTTON */
+
 button {
-  margin-top: 20px;
-  padding: 12px 25px;
+  width: 100%;
+
+  margin-top: 28px;
+
+  padding: 15px;
+
   border: none;
-  border-radius: 12px;
-  background: #b22222;
+
+  border-radius: 18px;
+
+  background: linear-gradient(135deg, #b31217, #d62828);
+
   color: white;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
   cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 10px 20px rgba(179, 18, 23, 0.25);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 500px) {
+  .profile-card {
+    padding: 35px 22px;
+  }
+
+  #profile-name {
+    font-size: 28px;
+  }
+
+  .profile-card img {
+    width: 110px;
+    height: 110px;
+  }
 }

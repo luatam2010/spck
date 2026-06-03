@@ -19,12 +19,10 @@ import { auth, db } from "../firebase.js";
 
 const provider = new GoogleAuthProvider();
 
-// DOM loaded
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("login-form");
   const passwordInput = document.getElementById("password");
   const eye = document.getElementById("eye");
-
   const googleLoginBtn = document.getElementById("google-login");
 
   // SHOW / HIDE PASSWORD
@@ -38,37 +36,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // GOOGLE LOGIN
   googleLoginBtn.addEventListener("click", async () => {
     try {
       const result = await signInWithPopup(auth, provider);
 
       const user = result.user;
 
-      const userRef = doc(db, "users", user.uid);
-      const userSnap = await getDoc(userRef);
+      try {
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
 
-      if (!userSnap.exists()) {
-        await setDoc(userRef, {
-          fullName: user.displayName || "",
-          username: user.displayName || "",
-          email: user.email || "",
-          phoneNumber: "",
-          createdAt: serverTimestamp(),
-        });
+        if (!userSnap.exists()) {
+          await setDoc(userRef, {
+            fullName: user.displayName || "",
+            username: user.displayName || "",
+            email: user.email || "",
+            phoneNumber: "",
+            createdAt: serverTimestamp(),
+          });
+        }
+      } catch (firestoreError) {
+        console.error("Firestore Error:", firestoreError);
       }
 
       alert("Login With Google Successful! Welcome Back!");
-
-      localStorage.setItem(
-        "userData",
-        JSON.stringify({
-          fullName: user.displayName,
-          username: user.displayName,
-          email: user.email,
-          photoURL: user.photoURL,
-        }),
-      );
-
       window.location.href = "http://127.0.0.1:5502/index.html";
     } catch (error) {
       console.error(error);
@@ -76,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // LOGIN
+  // EMAIL / USERNAME LOGIN
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -86,23 +78,30 @@ document.addEventListener("DOMContentLoaded", () => {
     let email = identifier;
 
     try {
+      // LOGIN BY USERNAME
       if (!identifier.includes("@")) {
-        const q = query(
-          collection(db, "users"),
-          where("username", "==", identifier),
-        );
+        try {
+          const q = query(
+            collection(db, "users"),
+            where("username", "==", identifier),
+          );
 
-        const querySnapshot = await getDocs(q);
+          const querySnapshot = await getDocs(q);
 
-        if (querySnapshot.empty) {
-          alert("Invalid Username!");
+          if (querySnapshot.empty) {
+            alert("Invalid Username!");
+            return;
+          }
+
+          email = querySnapshot.docs[0].data().email;
+        } catch (firestoreError) {
+          console.error("Username Query Error:", firestoreError);
+          alert("Firestore Permission Error. Check Firestore Rules.");
           return;
         }
-
-        email = querySnapshot.docs[0].data().email;
       }
 
-      // LOGIN FIREBASE
+      // FIREBASE LOGIN
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
@@ -111,18 +110,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const user = userCredential.user;
 
-      const userRef = doc(db, "users", user.uid);
+      await user.reload();
 
-      const userSnap = await getDoc(userRef);
-
-      const userData = userSnap.data();
-
-      localStorage.setItem("userData", JSON.stringify(userData));
-
-      // CHECK VERIFY EMAIL
-      if (!user.emailVerified) {
+      if (!auth.currentUser.emailVerified) {
         alert("Please Verify Your Email Before Logging In!");
         return;
+      }
+
+      // GET USER DATA
+      try {
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
+
+        if (userSnap.exists()) {
+          const userData = userSnap.data();
+          localStorage.setItem("userData", JSON.stringify(userData));
+        }
+      } catch (firestoreError) {
+        console.error("Get User Data Error:", firestoreError);
       }
 
       alert("Login Successful! Welcome Back!");
@@ -143,6 +148,8 @@ document.addEventListener("DOMContentLoaded", () => {
         message = "Wrong Password.";
       } else if (error.code === "auth/invalid-email") {
         message = "Invalid Email Address.";
+      } else if (error.code === "auth/too-many-requests") {
+        message = "Too Many Attempts. Please Try Again Later.";
       }
 
       alert(message);
