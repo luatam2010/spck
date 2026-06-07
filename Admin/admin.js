@@ -1,15 +1,23 @@
 const userData = JSON.parse(localStorage.getItem("userData"));
 
+const ADMIN_EMAIL = "nguyentructhanhm@gmail.com";
+
+// CHƯA ĐĂNG NHẬP
 if (!userData) {
   alert("Please Login!");
 
   window.location.href = "/index.html";
 }
 
+// KHÔNG PHẢI ADMIN
+if (userData.email?.toLowerCase() !== ADMIN_EMAIL) {
+  alert("Access Denied!");
+
+  window.location.href = "/index.html";
+}
+
 const addBtn = document.getElementById("add-btn");
-
 const saveBtn = document.getElementById("save-btn");
-
 const productList = document.getElementById("product-list");
 
 let products = JSON.parse(localStorage.getItem("adminProducts")) || [];
@@ -23,11 +31,10 @@ function renderProducts() {
     div.className = "product";
 
     div.innerHTML = `
-      <img src="${product.image}">
+      <img src="${product.image}" alt="${product.name}">
 
       <div>
         <h3>${product.name}</h3>
-
         <p>${product.price}đ</p>
       </div>
 
@@ -41,21 +48,22 @@ function renderProducts() {
 }
 
 window.deleteProduct = function (index) {
-  products.splice(index, 1);
+  if (confirm("Are you sure you want to delete this product?")) {
+    products.splice(index, 1);
 
-  renderProducts();
+    renderProducts();
+  }
 };
 
 addBtn.addEventListener("click", () => {
-  const name = document.getElementById("name").value;
+  const name = document.getElementById("name").value.trim();
 
-  const price = document.getElementById("price").value;
+  const price = document.getElementById("price").value.trim();
 
-  const image = document.getElementById("image").value;
+  const image = document.getElementById("image").value.trim();
 
   if (!name || !price || !image) {
     alert("Please Fill All Fields!");
-
     return;
   }
 
@@ -66,6 +74,10 @@ addBtn.addEventListener("click", () => {
   });
 
   renderProducts();
+
+  document.getElementById("name").value = "";
+  document.getElementById("price").value = "";
+  document.getElementById("image").value = "";
 });
 
 saveBtn.addEventListener("click", () => {

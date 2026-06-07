@@ -43,6 +43,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const user = result.user;
 
+      localStorage.setItem(
+        "userData",
+        JSON.stringify({
+          uid: user.uid,
+          fullName: user.displayName,
+          username: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+        }),
+      );
+
       try {
         const userRef = doc(db, "users", user.uid);
         const userSnap = await getDoc(userRef);
